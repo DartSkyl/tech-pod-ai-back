@@ -1,0 +1,11 @@
+server {
+    listen 80;
+    server_name chatbot.ricochet-reference.com;
+
+    location / {
+        proxy_pass http://64.23.140.117:8000;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+	proxy_read_timeout 600s;
+    }
+}

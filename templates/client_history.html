@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ricochet Chat – History</title>
+</head>
+<body>
+
+<h1>Ricochet Fuel AI Chat History</h1>
+
+<h3 id="inputPrompt">Enter the dialogue ID:</h3>
+
+<form id="inputForm" action="" onsubmit="getChatHistory(event)">
+    <input type="text" id="messageText" autocomplete="off"/>
+    <button>Send</button>
+</form>
+
+<ul id="messages"></ul>
+
+<script>
+  const apiUrl = '{{ api_url }}';
+
+  function getChatHistory(event) {
+    event.preventDefault()
+    let chatId = document.getElementById('messageText')
+    fetch(`${apiUrl}/pages/client_history/${chatId.value}`)
+            .then(res=> res.json())
+            .then(mess => {
+      mess.forEach(msg => {
+        let msg_text = msg.author + ': ' + msg.text
+        appendMessages(msg_text)
+      })
+    })
+  }
+
+  function appendMessages(msg) {
+    let messages = document.getElementById('messages')
+    let message = document.createElement('li')
+    let content = document.createTextNode(msg)
+    message.appendChild(content)
+    messages.appendChild(message)
+  }
+
+</script>
+</body>
+</html>

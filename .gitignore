@@ -1,0 +1,11 @@
+/.idea/sqldialects.xml
+/env/
+.idea
+.DS_Store
+.env
+.venv
+*.log
+/virt_name/
+/tz.txt
+/beginner-html-site-styled-gh-pages/
+/__pycache__/

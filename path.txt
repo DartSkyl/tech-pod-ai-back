@@ -1,0 +1,1 @@
+/home/revad/ricochet-chat-bot-front/demo.html

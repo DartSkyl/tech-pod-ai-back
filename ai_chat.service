@@ -1,0 +1,13 @@
+[Unit]
+Description=AI_Chat_Bot
+After=mysql.service
+
+[Service]
+Type=simple
+Restart=always
+WorkingDirectory=/var/www/ricochet-chat-bot-back/
+ExecStart=/var/www/ricochet-chat-bot-back/env/bin/python3 /var/www/ricochet-chat-bot-back/main.py
+OOMScoreAdjust=-1000
+
+[Install]
+WantedBy=multi-user.target

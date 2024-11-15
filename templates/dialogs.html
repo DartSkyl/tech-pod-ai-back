@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ricochet Chat – History</title>
+</head>
+<body>
+
+<h1>Ricochet Fuel AI Chat History</h1>
+
+<h3>All dialogs:</h3>
+
+<table>
+  <tr>
+    <th>Data 1</th>
+    <th>Data 2</th>
+  </tr>
+  <tr>
+    <td>Calcutta</td>
+    <td>Orange</td>
+  </tr>
+  <tr>
+    <td>Robots</td>
+    <td>Jazz</td>
+  </tr>
+</table>
+
+
+
+<ul id="messages"></ul>
+
+<script>
+  const apiUrl = '{{ api_url }}';
+  const dialogsList = '{{ dialogs }}';
+  console.log(dialogsList)
+
+  function getChatHistory(event) {
+    event.preventDefault()
+    let chatId = document.getElementById('messageText')
+    fetch(`${apiUrl}/pages/client_history/${chatId.value}`)
+            .then(res=> res.json())
+            .then(mess => {
+      mess.forEach(msg => {
+        let msg_text = msg.author + ': ' + msg.text
+        appendMessages(msg_text)
+      })
+    })
+  }
+
+  function appendMessages(msg) {
+    let messages = document.getElementById('messages')
+    let message = document.createElement('li')
+    let content = document.createTextNode(msg)
+    message.appendChild(content)
+    messages.appendChild(message)
+  }
+
+</script>
+</body>
+</html>
